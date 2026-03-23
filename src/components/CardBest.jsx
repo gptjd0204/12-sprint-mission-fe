@@ -9,7 +9,7 @@ const CardBest = ({ bestProducts }) => {
     e.target.src = placeholderImg;
   };
 
-  return [...bestProducts].slice(0, 4).map(function (p) {
+  return [...bestProducts].map(function (p) {
     return (
       <div className={styles.cardBest}>
         <img src={p.images} onError={handelErrorImg} alt={p.name} key={p.id} />

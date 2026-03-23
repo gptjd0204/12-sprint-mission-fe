@@ -8,7 +8,7 @@ const BestProducts = () => {
     const getBestProducts = async () => {
       try {
         const res = await fetch(
-          `https://panda-market-api.vercel.app/products?&orderBy=favorite`,
+          `https://panda-market-api.vercel.app/products?page=1&pageSize=4&orderBy=favorite`,
         );
         const data = await res.json();
 
