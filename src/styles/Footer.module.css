@@ -1,0 +1,37 @@
+footer {
+  display: flex;
+  height: 160px;
+  padding: 32px 200px;
+  justify-content: space-between;
+  gap: 10px;
+  background: var(--Secondary-900);
+}
+
+.copylight {
+  color: var(--Secondary-400);
+  font-style: normal;
+  line-height: normal;
+}
+
+.info {
+  display: flex;
+  color: var(--Secondary-200);
+  font-style: normal;
+  line-height: normal;
+  gap: 30px;
+}
+
+.info p {
+  cursor: pointer;
+}
+
+.snsLink {
+  display: flex;
+  gap: 12px;
+}
+
+.snsLink img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
