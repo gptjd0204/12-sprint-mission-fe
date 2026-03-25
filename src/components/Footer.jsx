@@ -12,7 +12,7 @@ const Footer = () => {
         <p>©codeit - 2024</p>
       </div>
       <div className={styles.info}>
-        {/* 추후 Link로 수정 */}
+        {/* 추후 Link 태그로 수정 */}
         <p>Privacy Policy</p>
         <p>FAQ</p>
       </div>
