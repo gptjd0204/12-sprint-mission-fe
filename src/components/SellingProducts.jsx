@@ -1,43 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "../styles/UsedMarket.module.css";
 import icSearch from "../assets/ic_search.png";
 
 import CardGeneral from "./CardGeneral";
 import Pagination from "./Pagination";
 
-const SellingProducts = () => {
-  const [search, setSearch] = useState("");
-  const [products, setProducts] = useState([]);
-  const [page, setPage] = useState(1);
-  const [sortState, setSortState] = useState("recent");
-  const [totalPage, setTotalPage] = useState(0);
-
-  useEffect(
-    function () {
-      const getProducts = async () => {
-        try {
-          const res = await fetch(
-            `https://panda-market-api.vercel.app/products?page=${page}&pageSize=10&orderBy=${sortState}`,
-          );
-          const data = await res.json();
-
-          // 최대 페이지 계산
-          setTotalPage(Math.ceil(data.totalCount / 10));
-          setProducts(data.list);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
-      getProducts();
-    },
-    [page, sortState],
-  );
-
-  const handleSort = (e) => {
-    setSortState(e.target.value);
+const SellingProducts = ({
+  products,
+  onSortToggle,
+  page,
+  setPage,
+  keyword,
+  setKeyword,
+  totalPage,
+}) => {
+  const noSearch = () => {
+    return (
+      <p className={`${styles.noSearch} text-3xl bold`}>
+        검색된 목록이 없습니다..
+      </p>
+    );
   };
-
   return (
     <section className={styles.productListContainer}>
       <div className={styles.sellingHeader}>
@@ -45,9 +28,9 @@ const SellingProducts = () => {
         <div>
           <input
             type="text"
-            value={search}
+            value={keyword}
             onChange={(e) => {
-              setSearch(e.target.value);
+              setKeyword(e.target.value);
             }}
             placeholder="검색할 상품을 입력해주세요"
             className={`${styles.searchInput} text-lg regular`}
@@ -56,16 +39,18 @@ const SellingProducts = () => {
           <button className={`${styles.addProductBtn} text-lg semibold`}>
             상품 등록하기
           </button>
-          <select className={styles.sortSelect} onClick={handleSort}>
+          <select className={styles.sortSelect} onClick={onSortToggle}>
             <option value="recent">최신순</option>
             <option value="favorite">좋아요순</option>
           </select>
         </div>
       </div>
-      <ul className={styles.productsList}>
-        {products.map((item) => {
-          return <CardGeneral product={item} key={item.id} />;
-        })}
+      <ul className={styles.productsList} style={{ minHeight: "317px" }}>
+        {products.length === 0
+          ? noSearch()
+          : products.map((item) => {
+              return <CardGeneral product={item} key={item.id} />;
+            })}
       </ul>
       <Pagination page={page} setPage={setPage} totalPage={totalPage} />
     </section>

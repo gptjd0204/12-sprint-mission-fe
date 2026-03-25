@@ -190,3 +190,11 @@ h2 {
   position: absolute;
   margin-left: 16px;
 }
+
+.noSearch {
+  display: flex;
+  width: 100%;
+  color: var(--Secondary-400);
+  justify-content: center;
+  align-items: center;
+}
