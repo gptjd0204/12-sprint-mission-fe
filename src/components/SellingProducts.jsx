@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/UsedMarket.module.css";
+import icSearch from "../assets/ic_search.png";
 
 import CardGeneral from "./CardGeneral";
 import Pagination from "./Pagination";
@@ -48,8 +49,10 @@ const SellingProducts = () => {
             onChange={(e) => {
               setSearch(e.target.value);
             }}
-            className={`text-lg regular`}
+            placeholder="검색할 상품을 입력해주세요"
+            className={`${styles.searchInput} text-lg regular`}
           />
+          <img src={icSearch} alt="돋보기 아이콘" className={styles.icSearch} />
           <button className={`${styles.addProductBtn} text-lg semibold`}>
             상품 등록하기
           </button>
