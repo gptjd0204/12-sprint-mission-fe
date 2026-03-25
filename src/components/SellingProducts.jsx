@@ -9,6 +9,7 @@ const SellingProducts = () => {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [sortState, setSortState] = useState("recent");
+  const [totalPage, setTotalPage] = useState(0);
 
   useEffect(
     function () {
@@ -19,6 +20,8 @@ const SellingProducts = () => {
           );
           const data = await res.json();
 
+          // 최대 페이지 계산
+          setTotalPage(Math.ceil(data.totalCount / 10));
           setProducts(data.list);
         } catch (error) {
           console.error(error);
@@ -57,9 +60,11 @@ const SellingProducts = () => {
         </div>
       </div>
       <ul className={styles.productsList}>
-        <CardGeneral products={products} />
+        {products.map((item) => {
+          return <CardGeneral product={item} key={item.id} />;
+        })}
       </ul>
-      <Pagination page={page} setPage={setPage} />
+      <Pagination page={page} setPage={setPage} totalPage={totalPage} />
     </section>
   );
 };

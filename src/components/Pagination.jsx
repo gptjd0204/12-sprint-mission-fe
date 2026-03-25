@@ -9,7 +9,6 @@ const Pagination = ({ page, setPage }) => {
   const [pageChange, setPageChange] = useState([1, 2, 3, 4, 5]);
 
   const handlePrevPage = () => {
-    if (pageChange[0] <= 1) return;
     const prevPage = pageChange.map((p) => p - 5);
     setPageChange(prevPage);
     setPage(prevPage[0]);
@@ -29,6 +28,7 @@ const Pagination = ({ page, setPage }) => {
     <div className={styles.pageBtnContainer}>
       <button
         className={`${styles.pageBtn} text-lg semibold`}
+        disabled={pageChange[0] === 1}
         onClick={handlePrevPage}
       >
         <img src={arrowLeftActive} />

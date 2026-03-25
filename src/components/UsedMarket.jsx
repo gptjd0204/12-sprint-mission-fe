@@ -5,10 +5,12 @@ import SellingProducts from "./SellingProducts";
 
 const UsedMarket = () => {
   return (
-    <div className={styles.wrapper}>
-      <BestProducts />
-      <SellingProducts />
-    </div>
+    <main>
+      <div className={styles.wrapper}>
+        <BestProducts />
+        <SellingProducts />
+      </div>
+    </main>
   );
 };
 

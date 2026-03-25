@@ -4,28 +4,26 @@ import icFavorite from "../assets/ic_favorite.png";
 import placeholderImg from "../assets/product_img_default_sm.png";
 import styles from "../styles/UsedMarket.module.css";
 
-const CardGeneral = ({ products }) => {
+const CardGeneral = ({ product }) => {
   const handelErrorImg = (e) => {
     e.target.src = placeholderImg;
   };
 
-  return [...products].map(function (p) {
-    return (
-      <li className={styles.cardGeneral} key={p.id}>
-        <img src={p.images} onError={handelErrorImg} alt={p.name} />
-        <div className={styles.cardInfo}>
-          <p className={`${styles.title} text-md medium`}>{p.name}</p>
-          <p className={`${styles.price} text-lg bold`}>
-            {p.price.toLocaleString()}원
-          </p>
-          <div className={styles.favorite}>
-            <img src={icFavorite} />
-            <p className="text-xs medium">{p.favoriteCount}</p>
-          </div>
+  return (
+    <li className={styles.cardGeneral}>
+      <img src={product.images} onError={handelErrorImg} alt={product.name} />
+      <div className={styles.cardInfo}>
+        <p className={`${styles.title} text-md medium`}>{product.name}</p>
+        <p className={`${styles.price} text-lg bold`}>
+          {product.price.toLocaleString()}원
+        </p>
+        <div className={styles.favorite}>
+          <img src={icFavorite} />
+          <p className="text-xs medium">{product.favoriteCount}</p>
         </div>
-      </li>
-    );
-  });
+      </div>
+    </li>
+  );
 };
 
 export default CardGeneral;

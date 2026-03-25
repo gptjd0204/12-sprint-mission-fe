@@ -14,7 +14,7 @@ const GNB = () => {
             alt="Pandamarket Logo"
           />
           <div className={`${styles.navList} text-2lg bold`}>
-            {/* Link로 코드 수정 예정 */}
+            {/* 추후 NavLink 태그로 수정 */}
             <span>자유게시판</span>
             <span>중고마켓</span>
           </div>
