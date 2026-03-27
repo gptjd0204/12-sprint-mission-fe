@@ -5,10 +5,17 @@ import arrowLeftInactive from "../assets/arrow_left_inactive.png";
 import arrowRightInactive from "../assets/arrow_right_inactive.png";
 import styles from "../styles/UsedMarket.module.css";
 
-const Pagination = ({ page, setPage, totalPage, pageGroup, onPageChange }) => {
-  const handleCurrentPage = (cur) => {
-    setPage(cur);
-  };
+const Pagination = ({
+  page,
+  // setPage,
+  totalPage,
+  pageGroup,
+  onPageChange,
+  onCurrentPage,
+}) => {
+  // const handleCurrentPage = (cur) => {
+  //   setPage(cur);
+  // };
 
   return (
     <div className={styles.pageBtnContainer}>
@@ -27,7 +34,7 @@ const Pagination = ({ page, setPage, totalPage, pageGroup, onPageChange }) => {
             value={p}
             className={`${styles.pageBtn} text-lg semibold ${page === p ? styles.active : ""}`}
             onClick={function () {
-              handleCurrentPage(p);
+              onCurrentPage(p);
             }}
             key={p}
           >

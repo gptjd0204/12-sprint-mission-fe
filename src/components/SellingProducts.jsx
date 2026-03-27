@@ -9,13 +9,13 @@ const SellingProducts = ({
   products,
   onSortToggle,
   page,
-  setPage,
+  // setPage,
   keyword,
   setKeyword,
   totalPage,
   listRow,
-  pages,
   onPageChange,
+  onCurrentPage,
   pageGroup,
 }) => {
   const noSearch = () => {
@@ -74,11 +74,11 @@ const SellingProducts = ({
 
       <Pagination
         page={page}
-        setPage={setPage}
+        // setPage={setPage}
         totalPage={totalPage}
-        pages={pages}
         pageGroup={pageGroup}
         onPageChange={onPageChange}
+        onCurrentPage={onCurrentPage}
       />
     </section>
   );
