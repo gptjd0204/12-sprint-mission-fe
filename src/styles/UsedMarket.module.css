@@ -65,6 +65,11 @@ h2 {
   object-fit: cover; /* 비율 유지하며 꽉 차게 */
   overflow: hidden;
 }
+.productsListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
 
 .productsList {
   display: flex;
@@ -194,6 +199,7 @@ h2 {
 .noSearch {
   display: flex;
   width: 100%;
+  height: 674px;
   color: var(--Secondary-400);
   justify-content: center;
   align-items: center;

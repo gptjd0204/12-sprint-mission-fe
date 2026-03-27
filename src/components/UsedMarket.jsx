@@ -9,6 +9,8 @@ const UsedMarket = () => {
   const [orderBy, setOrderBy] = useState("recent");
   const [keyword, setKeyword] = useState("");
   const [totalPage, setTotalPage] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  const listRow = pageSize / 2;
 
   useEffect(
     function () {
@@ -16,7 +18,7 @@ const UsedMarket = () => {
         try {
           // 판매 중인 상품 데이터
           const res = await fetch(
-            `https://panda-market-api.vercel.app/products?page=${page}&pageSize=10&orderBy=${orderBy}&keyword=${keyword}`,
+            `https://panda-market-api.vercel.app/products?page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&keyword=${keyword}`,
           );
           const data = await res.json();
 
@@ -30,7 +32,7 @@ const UsedMarket = () => {
 
       getProducts();
     },
-    [page, orderBy, keyword],
+    [page, pageSize, orderBy, keyword],
   );
 
   const handleSortToggle = (e) => {
@@ -49,6 +51,7 @@ const UsedMarket = () => {
           keyword={keyword}
           setKeyword={setKeyword}
           totalPage={totalPage}
+          listRow={listRow}
         />
       </div>
     </main>

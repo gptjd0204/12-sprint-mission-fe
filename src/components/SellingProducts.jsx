@@ -13,6 +13,7 @@ const SellingProducts = ({
   keyword,
   setKeyword,
   totalPage,
+  listRow,
 }) => {
   const noSearch = () => {
     return (
@@ -45,13 +46,28 @@ const SellingProducts = ({
           </select>
         </div>
       </div>
-      <ul className={styles.productsList} style={{ minHeight: "317px" }}>
-        {products.length === 0
-          ? noSearch()
-          : products.map((item) => {
-              return <CardGeneral product={item} key={item.id} />;
-            })}
-      </ul>
+
+      <div className={styles.productsListContainer}>
+        {products.length === 0 ? (
+          noSearch()
+        ) : (
+          <>
+            <ul className={styles.productsList} style={{ minHeight: "317px" }}>
+              {products.length === 0
+                ? noSearch()
+                : products.slice(0, listRow).map((item) => {
+                    return <CardGeneral product={item} key={item.id} />;
+                  })}
+            </ul>
+            <ul className={styles.productsList} style={{ minHeight: "317px" }}>
+              {products.slice(listRow).map((item) => {
+                return <CardGeneral product={item} key={item.id} />;
+              })}
+            </ul>
+          </>
+        )}
+      </div>
+
       <Pagination page={page} setPage={setPage} totalPage={totalPage} />
     </section>
   );
