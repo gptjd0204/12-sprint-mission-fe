@@ -12,11 +12,7 @@ const App = () => {
   return (
     <div>
       <GNB isMobile={isMobile} />
-      <UsedMarket
-        windowWidth={windowWidth}
-        isMobile={isMobile}
-        isTablet={isTablet}
-      />
+      <UsedMarket isMobile={isMobile} isTablet={isTablet} />
       <Footer />
     </div>
   );

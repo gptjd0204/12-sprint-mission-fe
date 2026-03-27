@@ -5,12 +5,12 @@ import SellingProducts from "./SellingProducts";
 import { usePagination } from "../hooks/usePagination.js";
 import { useProducts } from "../hooks/useProducts.js";
 
-const UsedMarket = ({ windowWidth, isMobile, isTablet }) => {
+const UsedMarket = ({ isMobile, isTablet }) => {
   const pageSize = useMemo(() => {
     if (isMobile) return 4; // 모바일 (2열 * 2줄)
     if (isTablet) return 6; // 태블릿 (3열 * 2줄)
     return 10; // 데스크탑
-  }, [windowWidth]);
+  }, [isMobile, isTablet]);
 
   // 페이지네이션 커스텀 hook
   const { page, getPageGroup, handlePageChange, handleCurrentPage } =
@@ -28,11 +28,7 @@ const UsedMarket = ({ windowWidth, isMobile, isTablet }) => {
   return (
     <main>
       <div className={styles.wrapper}>
-        <BestProducts
-          windowWidth={windowWidth}
-          isMobile={isMobile}
-          isTablet={isTablet}
-        />
+        <BestProducts isMobile={isMobile} isTablet={isTablet} />
         <SellingProducts
           products={products}
           onSortToggle={handleSortToggle}

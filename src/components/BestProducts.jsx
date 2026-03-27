@@ -3,12 +3,12 @@ import CardBest from "./CardBest";
 import styles from "../styles/UsedMarket.module.css";
 import { useProducts } from "../hooks/useProducts";
 
-const BestProducts = ({ windowWidth, isMobile, isTablet }) => {
+const BestProducts = ({ isMobile, isTablet }) => {
   const pageSize = useMemo(() => {
     if (isMobile) return 1; // 모바일 (1열)
     if (isTablet) return 2; // 태블릿 (2열)
     return 4; // 데스크탑 (4열)
-  }, [windowWidth]);
+  }, [isMobile, isTablet]);
 
   const { products } = useProducts(1, pageSize, "best");
 
