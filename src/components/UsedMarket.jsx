@@ -15,10 +15,10 @@ const UsedMarket = () => {
       const getProducts = async () => {
         try {
           // 판매 중인 상품 데이터
-          const res2 = await fetch(
+          const res = await fetch(
             `https://panda-market-api.vercel.app/products?page=${page}&pageSize=10&orderBy=${orderBy}&keyword=${keyword}`,
           );
-          const data = await res2.json();
+          const data = await res.json();
 
           // 최대 페이지 수
           setTotalPage(Math.ceil(data.totalCount / 10));
