@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useMemo } from "react";
 import BestProducts from "./BestProducts";
 import styles from "../styles/UsedMarket.module.css";
 import SellingProducts from "./SellingProducts";
 import { usePagination } from "../hooks/usePagination.js";
 import { useProducts } from "../hooks/useProducts.js";
 
-const UsedMarket = () => {
-  const pageSize = 10;
-  const listRow = pageSize / 2;
+const UsedMarket = ({ windowWidth, isMobile, isTablet }) => {
+  const pageSize = useMemo(() => {
+    if (isMobile) return 4; // 모바일 (2열 * 2줄)
+    if (isTablet) return 6; // 태블릿 (3열 * 2줄)
+    return 10; // 데스크탑
+  }, [windowWidth]);
 
   // 페이지네이션 커스텀 hook
   const { page, getPageGroup, handlePageChange, handleCurrentPage } =
@@ -17,13 +20,19 @@ const UsedMarket = () => {
   const { products, totalPage, keyword, setKeyword, handleSortToggle } =
     useProducts(page, pageSize);
 
+  const listRow = pageSize / 2;
+
   // 페이지 버튼 그룹 계산 (최대 5개 까지)
   const pageGroup = getPageGroup(totalPage);
 
   return (
     <main>
       <div className={styles.wrapper}>
-        <BestProducts />
+        <BestProducts
+          windowWidth={windowWidth}
+          isMobile={isMobile}
+          isTablet={isTablet}
+        />
         <SellingProducts
           products={products}
           onSortToggle={handleSortToggle}
@@ -35,6 +44,8 @@ const UsedMarket = () => {
           onPageChange={handlePageChange}
           onCurrentPage={handleCurrentPage}
           pageGroup={pageGroup}
+          isMobile={isMobile}
+          isTablet={isTablet}
         />
       </div>
     </main>

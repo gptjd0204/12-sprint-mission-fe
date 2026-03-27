@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 
-export const useProducts = (page, pageSize) => {
+export const useProducts = (page, pageSize, use) => {
   const [products, setProducts] = useState([]);
-  const [orderBy, setOrderBy] = useState("recent");
+  const [orderBy, setOrderBy] = useState(
+    use === "best" ? "favorite" : "recent",
+  );
   const [keyword, setKeyword] = useState("");
   const [totalPage, setTotalPage] = useState(0);
 
@@ -39,6 +41,7 @@ export const useProducts = (page, pageSize) => {
     totalPage,
     orderBy,
     keyword,
+    setOrderBy,
     setKeyword,
     handleSortToggle,
   };

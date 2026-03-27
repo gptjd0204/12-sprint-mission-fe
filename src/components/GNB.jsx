@@ -1,19 +1,22 @@
 import React from "react";
 import pandaMarketLogo from "../assets/pandamarket.png";
+import pandaMarketLogoMobile from "../assets/pandamarket_mobile.png";
 import styles from "../styles/GNB.module.css";
 import "../App.css";
 
-const GNB = () => {
+const GNB = ({ isMobile }) => {
   return (
     <nav>
       <div className={styles.gnbContainer}>
         <div>
           <img
-            src={pandaMarketLogo}
+            src={isMobile ? pandaMarketLogoMobile : pandaMarketLogo}
             className={styles.logo}
             alt="Pandamarket Logo"
           />
-          <div className={`${styles.navList} text-2lg bold`}>
+          <div
+            className={`${styles.navList} ${isMobile ? "text-lg" : "text-2lg"} bold`}
+          >
             {/* 추후 NavLink 태그로 수정 */}
             <span>자유게시판</span>
             <span>중고마켓</span>

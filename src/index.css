@@ -3,4 +3,5 @@
 body {
   font-family: Pretendard;
   font-style: normal;
+  min-width: 343px;
 }

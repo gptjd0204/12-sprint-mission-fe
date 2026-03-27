@@ -39,5 +39,10 @@ export const usePagination = (groupSize = 5) => {
     setPage(pageNumber);
   };
 
-  return { page, setPage, getPageGroup, handlePageChange, handleCurrentPage };
+  return {
+    page,
+    getPageGroup,
+    handlePageChange,
+    handleCurrentPage,
+  };
 };

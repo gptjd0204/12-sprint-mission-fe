@@ -7,16 +7,11 @@ import styles from "../styles/UsedMarket.module.css";
 
 const Pagination = ({
   page,
-  // setPage,
   totalPage,
   pageGroup,
   onPageChange,
   onCurrentPage,
 }) => {
-  // const handleCurrentPage = (cur) => {
-  //   setPage(cur);
-  // };
-
   return (
     <div className={styles.pageBtnContainer}>
       <button
