@@ -26,7 +26,7 @@ const BestProducts = () => {
       <h2 className="text-xl bold">베스트 상품</h2>
       <ul className={`${styles.productsList} best`}>
         {bestProducts.map((item) => {
-          return <CardBest product={item} key={item.id} />;
+          return <CardBest bestProduct={item} key={item.id} />;
         })}
       </ul>
     </section>
