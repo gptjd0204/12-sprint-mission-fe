@@ -14,6 +14,9 @@ const SellingProducts = ({
   setKeyword,
   totalPage,
   listRow,
+  pages,
+  onPageChange,
+  pageGroup,
 }) => {
   const noSearch = () => {
     return (
@@ -32,6 +35,7 @@ const SellingProducts = ({
             value={keyword}
             onChange={(e) => {
               setKeyword(e.target.value);
+              onPageChange();
             }}
             placeholder="검색할 상품을 입력해주세요"
             className={`${styles.searchInput} text-lg regular`}
@@ -68,7 +72,14 @@ const SellingProducts = ({
         )}
       </div>
 
-      <Pagination page={page} setPage={setPage} totalPage={totalPage} />
+      <Pagination
+        page={page}
+        setPage={setPage}
+        totalPage={totalPage}
+        pages={pages}
+        pageGroup={pageGroup}
+        onPageChange={onPageChange}
+      />
     </section>
   );
 };

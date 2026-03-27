@@ -10,7 +10,11 @@ const UsedMarket = () => {
   const [keyword, setKeyword] = useState("");
   const [totalPage, setTotalPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
+  const [pages, setPages] = useState([]);
   const listRow = pageSize / 2;
+
+  const [index, setIndex] = useState(0);
+  const pageGroup = pages.slice(index, index + 5);
 
   useEffect(
     function () {
@@ -23,20 +27,49 @@ const UsedMarket = () => {
           const data = await res.json();
 
           // 최대 페이지 수
-          setTotalPage(Math.ceil(data.totalCount / 10));
+          const total = Math.ceil(data.totalCount / 10);
+          setTotalPage(total);
+
+          // 페이지네이션에 필요한 페이지 설정
+          const pagesData = [];
+          if (total <= 0) {
+            pagesData.push(1);
+          } else {
+            for (let i = 1; i <= total; i++) {
+              pagesData.push(i);
+            }
+          }
+
+          setPages(pagesData);
           setProducts(data.list);
         } catch (error) {
           console.error(error);
         }
       };
-
       getProducts();
     },
-    [page, pageSize, orderBy, keyword],
+    [page, pageSize, orderBy, keyword, index],
   );
 
   const handleSortToggle = (e) => {
     setOrderBy(e.target.value);
+  };
+
+  const handlePageChange = (action) => {
+    if (action === "prev") {
+      if (index <= 0) return;
+      const newIndex = index - 5;
+      setIndex(newIndex);
+      setPage(newIndex + 1);
+    } else if (action === "next") {
+      if (index > totalPage) return;
+      const newIndex = index + 5;
+      setIndex(newIndex);
+      setPage(newIndex + 1);
+    } else {
+      setIndex(0);
+      setPage(1);
+    }
   };
 
   return (
@@ -52,6 +85,9 @@ const UsedMarket = () => {
           setKeyword={setKeyword}
           totalPage={totalPage}
           listRow={listRow}
+          pages={pages}
+          onPageChange={handlePageChange}
+          pageGroup={pageGroup}
         />
       </div>
     </main>
