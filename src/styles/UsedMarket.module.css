@@ -194,11 +194,9 @@ h2 {
 .sortList {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   max-width: 8.125rem;
   width: 100%;
   color: var(--Secondary-800);
-  background-color: #fff;
   text-align: center;
   z-index: 10;
   position: absolute;
@@ -207,10 +205,12 @@ h2 {
 
 .sortList option {
   overflow: hidden;
+  background-color: #fff;
   border-left: 0.0625rem solid var(--Secondary-200);
   border-right: 0.0625rem solid var(--Secondary-200);
   border-bottom: 0.0625rem solid var(--Secondary-200);
   padding: 0.5625rem 0 0.4375rem 0;
+  cursor: pointer;
 }
 
 .sortList option:first-child {
@@ -220,7 +220,6 @@ h2 {
 }
 
 .sortList option:last-child {
-  overflow: hidden;
   border-radius: 0 0 0.75rem 0.75rem;
   border-left: 0.0625rem solid var(--Secondary-200);
   border-right: 0.0625rem solid var(--Secondary-200);
