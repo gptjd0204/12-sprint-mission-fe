@@ -7,6 +7,7 @@ export const useProducts = (page, pageSize, use) => {
   );
   const [keyword, setKeyword] = useState("");
   const [totalPage, setTotalPage] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // 상품 목록 조회 함수
@@ -36,13 +37,19 @@ export const useProducts = (page, pageSize, use) => {
     setOrderBy(e.target.value);
   };
 
+  const handleDropdownToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   return {
     products,
     totalPage,
     orderBy,
     keyword,
+    isOpen,
     setOrderBy,
     setKeyword,
     handleSortToggle,
+    handleDropdownToggle,
   };
 };

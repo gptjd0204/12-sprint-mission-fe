@@ -138,36 +138,6 @@ h2 {
   cursor: pointer;
 }
 
-/* 정렬 토글 버튼 CSS */
-.sortSelect {
-  display: flex;
-  width: 8.125rem;
-  height: 2.625rem;
-  padding: 0.75rem 1.25rem;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.625rem;
-  border-radius: 0.75rem;
-  border: 0.0625rem solid var(--Secondary-200);
-  background: #fff;
-  cursor: pointer;
-}
-
-/* 정렬 목록 버튼 CSS */
-.sortSelect option {
-  display: flex;
-  width: 8.125rem;
-  height: 2.625rem;
-  padding: 0.75rem 1.25rem;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.625rem;
-  border-radius: 0.75rem;
-  border: 0.0625rem solid var(--Secondary-200);
-  background: #fff;
-  cursor: pointer;
-}
-
 /* 검색 CSS */
 .searchContainer {
   display: flex;
@@ -198,6 +168,64 @@ h2 {
   color: var(--Secondary-400);
   justify-content: center;
   align-items: center;
+}
+
+/* 정렬 토글 버튼 CSS */
+.sortDropdownContainer {
+  position: relative;
+}
+
+.sortBtn {
+  display: flex;
+  width: 8.125rem;
+  height: 2.625rem;
+  padding: 0.75rem 1.25rem;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.75rem;
+  border: 0.0625rem solid var(--Secondary-200);
+  font-family: Pretendard;
+  color: var(--Secondary-800);
+  background: #fff;
+  cursor: pointer;
+}
+
+/* 정렬 목록 버튼 CSS */
+.sortList {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-width: 8.125rem;
+  width: 100%;
+  color: var(--Secondary-800);
+  background-color: #fff;
+  text-align: center;
+  z-index: 10;
+  position: absolute;
+  top: 3.125rem;
+}
+
+.sortList option {
+  overflow: hidden;
+  border-left: 0.0625rem solid var(--Secondary-200);
+  border-right: 0.0625rem solid var(--Secondary-200);
+  border-bottom: 0.0625rem solid var(--Secondary-200);
+  padding: 0.5625rem 0 0.4375rem 0;
+}
+
+.sortList option:first-child {
+  border-radius: 0.75rem 0.75rem 0 0;
+  border: 0.0625rem solid var(--Secondary-200);
+  padding: 0.5625rem 0 0.4375rem 0;
+}
+
+.sortList option:last-child {
+  overflow: hidden;
+  border-radius: 0 0 0.75rem 0.75rem;
+  border-left: 0.0625rem solid var(--Secondary-200);
+  border-right: 0.0625rem solid var(--Secondary-200);
+  border-bottom: 0.0625rem solid var(--Secondary-200);
+  padding: 0.5625rem 0 0.4375rem 0;
 }
 
 /* 페이지네이션 버튼 CSS */
@@ -300,5 +328,11 @@ h2 {
 
   .searchContainer {
     gap: 0.875rem;
+  }
+
+  /* 정렬 목록 버튼 CSS */
+  .sortList {
+    width: 100vw;
+    right: 0;
   }
 }

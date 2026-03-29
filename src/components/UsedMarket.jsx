@@ -17,8 +17,16 @@ const UsedMarket = ({ isMobile, isTablet }) => {
     usePagination(5);
 
   // 상품 커스텀 hook
-  const { products, totalPage, keyword, setKeyword, handleSortToggle } =
-    useProducts(page, pageSize);
+  const {
+    products,
+    totalPage,
+    keyword,
+    isOpen,
+    orderBy,
+    setKeyword,
+    handleSortToggle,
+    handleDropdownToggle,
+  } = useProducts(page, pageSize);
 
   const listRow = pageSize / 2;
 
@@ -37,8 +45,11 @@ const UsedMarket = ({ isMobile, isTablet }) => {
           setKeyword={setKeyword}
           totalPage={totalPage}
           listRow={listRow}
+          isOpen={isOpen}
+          orderBy={orderBy}
           onPageChange={handlePageChange}
           onCurrentPage={handleCurrentPage}
+          onDropdownToggle={handleDropdownToggle}
           pageGroup={pageGroup}
           isMobile={isMobile}
           isTablet={isTablet}

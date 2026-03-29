@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/UsedMarket.module.css";
 import icSearch from "../assets/ic_search.png";
 import mobileSortBtn from "../assets/btn_sort.png";
+import icArrowDown from "../assets/ic_arrow_down.png";
 
 import CardGeneral from "./CardGeneral";
 import Pagination from "./Pagination";
@@ -14,12 +15,16 @@ const SellingProducts = ({
   setKeyword,
   totalPage,
   listRow,
+  isOpen,
+  orderBy,
   onPageChange,
   onCurrentPage,
+  onDropdownToggle,
   pageGroup,
   isMobile,
   isTablet,
 }) => {
+  // 검색 결과가 없을 시
   const noSearch = () => {
     return (
       <p
@@ -27,6 +32,28 @@ const SellingProducts = ({
       >
         검색된 목록이 없습니다..
       </p>
+    );
+  };
+
+  // 정렬 드롭다운
+  const sortDropdownList = () => {
+    return (
+      <div className={styles.sortList}>
+        <option
+          className={"text-lg regular"}
+          value="recent"
+          onClick={onSortToggle}
+        >
+          최신순
+        </option>
+        <option
+          className={"text-lg regular"}
+          value="favorite"
+          onClick={onSortToggle}
+        >
+          좋아요순
+        </option>
+      </div>
     );
   };
 
@@ -52,25 +79,19 @@ const SellingProducts = ({
             className={`${styles.searchInput} text-md regular`}
           />
           <img src={icSearch} alt="돋보기 아이콘" className={styles.icSearch} />
-
-          {isMobile ? (
+          <div className={styles.sortDropdownContainer}>
             <img
               src={mobileSortBtn}
-              alt="정렬 버튼"
-              onClick={() => {
-                alert("정렬 버튼입니다");
-              }}
+              alt="정렬 버튼(모바일ver)"
+              onClick={onDropdownToggle}
             />
-          ) : (
-            <select className={styles.sortSelect} onClick={onSortToggle}>
-              <option value="recent">최신순</option>
-              <option value="favorite">좋아요순</option>
-            </select>
-          )}
+            {isOpen ? sortDropdownList() : <></>}
+          </div>
         </div>
       </>
     );
   };
+
   return (
     <section className={styles.sellListContainer}>
       <div className={styles.sellingHeader}>
@@ -99,10 +120,16 @@ const SellingProducts = ({
                 상품 등록하기
               </button>
 
-              <select className={styles.sortSelect} onClick={onSortToggle}>
-                <option value="recent">최신순</option>
-                <option value="favorite">좋아요순</option>
-              </select>
+              <div className={styles.sortDropdownContainer}>
+                <button
+                  className={`${styles.sortBtn} text-lg regular`}
+                  onClick={onDropdownToggle}
+                >
+                  {orderBy === "recent" ? "최신순" : "좋아요순"}
+                  <img src={icArrowDown} />
+                </button>
+                {isOpen ? sortDropdownList() : <></>}
+              </div>
             </div>
           </>
         )}
